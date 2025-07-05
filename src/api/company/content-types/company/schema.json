@@ -4,7 +4,7 @@
   "info": {
     "singularName": "company",
     "pluralName": "companies",
-    "displayName": "Company"
+    "displayName": "Nhà máy"
   },
   "options": {
     "draftAndPublish": true

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "dealer",
     "pluralName": "dealers",
-    "displayName": "Dealer"
+    "displayName": "Đại lý"
   },
   "options": {
     "draftAndPublish": true
@@ -71,6 +71,11 @@
           "localized": true
         }
       }
+    },
+    "province": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::province.province"
     }
   }
 }

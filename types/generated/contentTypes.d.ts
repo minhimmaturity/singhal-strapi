@@ -406,7 +406,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
     description: 'Create your blog content';
-    displayName: 'Article';
+    displayName: 'B\u00E0i vi\u1EBFt';
     pluralName: 'articles';
     singularName: 'article';
   };
@@ -474,7 +474,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
-    displayName: 'Category';
+    displayName: 'Lo\u1EA1i';
     pluralName: 'categories';
     singularName: 'category';
   };
@@ -514,7 +514,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
   collectionName: 'companies';
   info: {
-    displayName: 'Company';
+    displayName: 'Nh\u00E0 m\u00E1y';
     pluralName: 'companies';
     singularName: 'company';
   };
@@ -546,7 +546,7 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
 export interface ApiDealerDealer extends Struct.CollectionTypeSchema {
   collectionName: 'dealers';
   info: {
-    displayName: 'Dealer';
+    displayName: '\u0110\u1EA1i l\u00FD';
     pluralName: 'dealers';
     singularName: 'dealer';
   };
@@ -599,6 +599,7 @@ export interface ApiDealerDealer extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    province: Schema.Attribute.Relation<'oneToOne', 'api::province.province'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -647,7 +648,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
-    displayName: 'Product';
+    displayName: 'S\u1EA3n ph\u1EA9m';
     pluralName: 'products';
     singularName: 'product';
   };
@@ -703,6 +704,34 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProvinceProvince extends Struct.CollectionTypeSchema {
+  collectionName: 'provinces';
+  info: {
+    displayName: 'T\u1EC9nh';
+    pluralName: 'provinces';
+    singularName: 'province';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::province.province'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1227,6 +1256,7 @@ declare module '@strapi/strapi' {
       'api::dealer.dealer': ApiDealerDealer;
       'api::global.global': ApiGlobalGlobal;
       'api::product.product': ApiProductProduct;
+      'api::province.province': ApiProvinceProvince;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
